@@ -8,6 +8,9 @@ import Products from './pages/Products';
 import Services from './pages/Services';
 import Contact from './pages/Contact';
 import Careers from './pages/Careers';
+import EventDetail from './pages/EventDetail';
+import NewsBlogs from './pages/NewsBlogs';
+import Sustainability from './pages/Sustainability';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -49,6 +52,12 @@ function App() {
         return <Contact />;
       case 'careers':
         return <Careers />;
+      case 'event-detail':
+        return <EventDetail />;
+      case 'news-blogs':
+        return <NewsBlogs />;
+      case 'sustainability':
+        return <Sustainability />;
       default:
         return <Home />;
     }
