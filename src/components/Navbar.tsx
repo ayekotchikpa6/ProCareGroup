@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronDown, Menu, X, Building2 } from 'lucide-react';
+import { ChevronDown, Menu, Building2 } from 'lucide-react';
 
 interface NavigationItem {
   name: string;
@@ -104,7 +104,7 @@ const Navbar: React.FC<NavbarProps> = ({
                               Who We Are
                             </button>
                             <button
-                              onClick={() => handleNavigationClick('about')}
+                              onClick={() => handleNavigationClick('sustainability')}
                               className="text-left p-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-secondary transition-colors rounded-md"
                             >
                               Sustainability & CSR
@@ -116,7 +116,7 @@ const Navbar: React.FC<NavbarProps> = ({
                               Our Brands
                             </button>
                             <button
-                              onClick={() => handleNavigationClick('about')}
+                             onClick={() => handleNavigationClick('news-blogs')}
                               className="text-left p-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-secondary transition-colors rounded-md"
                             >
                               News & Blogs
@@ -302,7 +302,7 @@ const Navbar: React.FC<NavbarProps> = ({
                     Who We Are
                   </button>
                   <button
-                    onClick={() => handleMobileSubNavClick('about')}
+                    onClick={() => handleMobileSubNavClick('sustainability')}
                     className="p-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-secondary transition-colors rounded-md text-left"
                   >
                     Sustainability & CSR
@@ -314,7 +314,7 @@ const Navbar: React.FC<NavbarProps> = ({
                     Our Brands
                   </button>
                   <button
-                    onClick={() => handleMobileSubNavClick('about')}
+                   onClick={() => handleMobileSubNavClick('news-blogs')}
                     className="p-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-secondary transition-colors rounded-md text-left"
                   >
                     News & Blogs
