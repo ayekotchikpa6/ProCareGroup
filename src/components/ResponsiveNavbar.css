@@ -1,0 +1,309 @@
+/* CSS Custom Properties */
+:root {
+  --navbar-bg: rgba(0, 0, 0, 0.28);
+  --white: #ffffff;
+  --white-transparent: rgba(255, 255, 255, 0.1);
+  --transition-duration: 0.3s;
+  --border-radius: 0.3125rem; /* 5px equivalent */
+}
+
+/* Base Navbar Styles */
+.responsive-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 10vh;
+  background: var(--navbar-bg);
+  z-index: 1000;
+  font-family: 'Instrument Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* Mobile Navbar */
+.navbar-mobile {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.navbar-desktop {
+  display: none;
+}
+
+/* Mobile Logo Container */
+.logo-container-mobile {
+  position: absolute;
+  width: 21.67vw;
+  height: 3.33vh;
+  top: 3.33vh;
+  left: 4.44vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-mobile {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform var(--transition-duration) ease;
+}
+
+.logo-mobile:hover {
+  transform: scale(1.05);
+}
+
+/* Mobile Send Inquiry Button */
+.send-inquiry-mobile {
+  position: absolute;
+  width: 21.11vw;
+  height: 6.67vh;
+  top: 1.67vh;
+  left: 72.22vw;
+  background: var(--white);
+  color: #000;
+  border: none;
+  border-radius: var(--border-radius);
+  font-family: inherit;
+  font-weight: 600;
+  font-size: clamp(0.75rem, 2.5vw, 1rem);
+  cursor: pointer;
+  transition: all var(--transition-duration) ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.send-inquiry-mobile:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateY(-0.125rem);
+}
+
+.send-inquiry-mobile:active {
+  transform: translateY(0);
+}
+
+/* Hamburger Menu */
+.hamburger-menu {
+  position: absolute;
+  width: 4.44vw;
+  height: 4.44vh;
+  left: 97.78vw;
+  top: 2.78vh;
+  transform: translateX(-100%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--transition-duration) ease;
+}
+
+.hamburger-menu:hover {
+  transform: translateX(-100%) scale(1.1);
+}
+
+.hamburger-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Desktop Styles */
+@media (min-width: 768px) {
+  .navbar-mobile {
+    display: none;
+  }
+
+  .navbar-desktop {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Desktop Logo Container */
+  .logo-container-desktop {
+    position: absolute;
+    width: 14.44vw;
+    height: 4.01vh;
+    top: 3.88vh;
+    left: 4.44vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo-desktop {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform var(--transition-duration) ease;
+  }
+
+  .logo-desktop:hover {
+    transform: scale(1.05);
+  }
+
+  /* Desktop Send Inquiry Button */
+  .send-inquiry-desktop {
+    position: absolute;
+    width: 10.56vw;
+    height: 6vh;
+    top: 3vh;
+    left: 76.81vw;
+    background: var(--white);
+    color: #000;
+    border: none;
+    border-radius: var(--border-radius);
+    font-family: inherit;
+    font-weight: 600;
+    font-size: clamp(0.875rem, 1.2vw, 1rem);
+    cursor: pointer;
+    transition: all var(--transition-duration) ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .send-inquiry-desktop:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transform: translateY(-0.125rem);
+  }
+
+  .send-inquiry-desktop:active {
+    transform: translateY(0);
+  }
+
+  /* Language Selector */
+  .language-selector {
+    position: absolute;
+    width: 6.6vw;
+    height: 5vh;
+    left: 88.96vw;
+    top: 3.5vh;
+    cursor: pointer;
+    transition: all var(--transition-duration) ease;
+  }
+
+  .language-selector:hover {
+    transform: scale(1.02);
+  }
+
+  /* Language Highlight Rectangle */
+  .language-highlight {
+    position: absolute;
+    width: 40%;
+    height: 100%;
+    right: 0;
+    top: 0;
+    background: var(--white-transparent);
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    transition: background var(--transition-duration) ease;
+  }
+
+  .language-selector:hover .language-highlight {
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  /* Language Text */
+  .language-text {
+    position: absolute;
+    left: 18.95%;
+    top: 25%;
+    font-family: 'Instrument Sans', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--white);
+    line-height: 1;
+    transition: color var(--transition-duration) ease;
+  }
+
+  .language-selector:hover .language-text {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  /* Language Icons Container */
+  .language-icons {
+    position: absolute;
+    width: 25.26%;
+    height: 60%;
+    left: 66.32%;
+    top: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.25rem;
+  }
+
+  .language-icon {
+    width: 45%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform var(--transition-duration) ease;
+  }
+
+  .language-selector:hover .language-icon {
+    transform: scale(1.1);
+  }
+
+  /* Invisible Toggle Button */
+  .language-toggle {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1;
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 480px) {
+  .send-inquiry-mobile {
+    font-size: 0.75rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .send-inquiry-desktop {
+    font-size: 1rem;
+  }
+  
+  .language-text {
+    font-size: 1.125rem;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
+
+/* Focus States */
+.send-inquiry-mobile:focus,
+.send-inquiry-desktop:focus,
+.hamburger-menu:focus,
+.language-toggle:focus {
+  outline: 0.125rem solid var(--white);
+  outline-offset: 0.125rem;
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .responsive-navbar {
+    background: rgba(0, 0, 0, 0.8);
+  }
+  
+  .send-inquiry-mobile,
+  .send-inquiry-desktop {
+    border: 0.125rem solid #000;
+  }
+}
