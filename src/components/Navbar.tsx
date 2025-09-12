@@ -57,214 +57,228 @@ const Navbar: React.FC<NavbarProps> = ({
   return (
     <>
       {/* Desktop Navigation */}
-      <nav className="bg-primary border-b border-gray-100 sticky top-0 z-50 shadow-sm hidden md:block">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            {/* Logo */}
-            <div className="flex items-center">
-              <button
-                onClick={() => handleNavigationClick('home')}
-                className="flex items-center space-x-2 text-secondary hover:opacity-80 transition-opacity"
-              >
-                <Building2 className="h-8 w-8" />
-                <span className="text-xl font-bold">ProCareGroup</span>
-              </button>
-            </div>
+      <nav className="navbar-desktop bg-primary border-b border-gray-100 sticky top-0 z-50 shadow-sm hidden md:block">
+        <div className="navbar-container">
+          {/* Logo */}
+          <div className="logo-container">
+            <button
+              onClick={() => handleNavigationClick('home')}
+              className="logo-button"
+            >
+              <img 
+                src="/src/assets/Procare-logo.svg" 
+                alt="ProCareGroup" 
+                className="logo-image"
+              />
+            </button>
+          </div>
 
-            {/* Navigation Items */}
-            <div className="flex items-center space-x-8">
-              {navigationItems.map((item) => (
-                <div key={item.key} className="relative">
-                  <button
-                    onClick={() => item.hasDropdown ? handleDropdownToggle(item.key) : handleNavigationClick(item.key)}
-                    className={`flex items-center space-x-1 px-3 py-2 text-sm font-medium transition-colors duration-200 ${
-                      currentPage === item.key
-                        ? 'text-secondary border-b-2 border-secondary'
-                        : 'text-gray-700 hover:text-secondary'
-                    }`}
-                  >
-                    <span>{item.name}</span>
-                    {item.hasDropdown && (
-                      <ChevronDown className={`h-4 w-4 transition-transform ${openDropdown === item.key ? 'rotate-180' : ''}`} />
-                    )}
-                  </button>
-                  
-                  {/* Dropdown Menu */}
-                  {item.hasDropdown && openDropdown === item.key && (
-                    <div className={`absolute top-full left-0 mt-2 bg-primary border border-gray-200 rounded-md shadow-lg ${
-                      item.key === 'about' ? 'w-96' : item.key === 'products' ? 'w-[600px]' : 'w-48'
-                    }`}>
-                      <div className="p-4">
-                        {item.key === 'about' && (
-                          <div className="grid grid-cols-2 gap-4">
-                            <button
-                              onClick={() => handleNavigationClick('about')}
-                              className="text-left p-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-secondary transition-colors rounded-md"
-                            >
-                              Who We Are
-                            </button>
-                            <button
-                              onClick={() => handleNavigationClick('sustainability')}
-                              className="text-left p-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-secondary transition-colors rounded-md"
-                            >
-                              Sustainability & CSR
-                            </button>
-                            <button
-                              onClick={() => handleNavigationClick('about')}
-                              className="text-left p-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-secondary transition-colors rounded-md"
-                            >
-                              Our Brands
-                            </button>
-                            <button
-                             onClick={() => handleNavigationClick('news-blogs')}
-                              className="text-left p-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-secondary transition-colors rounded-md"
-                            >
-                              News & Blogs
-                            </button>
-                          </div>
-                        )}
-                        {item.key === 'products' && (
-                          <div className="grid grid-cols-3 gap-4">
-                            <button
-                              onClick={() => handleNavigationClick('products')}
-                              className="text-left p-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-secondary transition-colors rounded-md"
-                            >
-                              General Care
-                            </button>
-                            <button
-                              onClick={() => handleNavigationClick('products')}
-                              className="text-left p-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-secondary transition-colors rounded-md"
-                            >
-                              Ophtalmology
-                            </button>
-                            <button
-                              onClick={() => handleNavigationClick('products')}
-                              className="text-left p-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-secondary transition-colors rounded-md"
-                            >
-                              Otolaryngology
-                            </button>
-                            <button
-                              onClick={() => handleNavigationClick('products')}
-                              className="text-left p-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-secondary transition-colors rounded-md"
-                            >
-                              Urology, gynecology-obstetrics
-                            </button>
-                            <button
-                              onClick={() => handleNavigationClick('products')}
-                              className="text-left p-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-secondary transition-colors rounded-md"
-                            >
-                              Laboratory
-                            </button>
-                            <button
-                              onClick={() => handleNavigationClick('products')}
-                              className="text-left p-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-secondary transition-colors rounded-md"
-                            >
-                              Dental
-                            </button>
-                            <button
-                              onClick={() => handleNavigationClick('products')}
-                              className="text-left p-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-secondary transition-colors rounded-md"
-                            >
-                              Gastroenterology
-                            </button>
-                            <button
-                              onClick={() => handleNavigationClick('products')}
-                              className="text-left p-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-secondary transition-colors rounded-md"
-                            >
-                              Furniture and Logistics
-                            </button>
-                            <button
-                              onClick={() => handleNavigationClick('products')}
-                              className="text-left p-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-secondary transition-colors rounded-md"
-                            >
-                              Comfort and Wellbeing
-                            </button>
-                            <button
-                              onClick={() => handleNavigationClick('products')}
-                              className="text-left p-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-secondary transition-colors rounded-md"
-                            >
-                              Podology, dermatology
-                            </button>
-                            <button
-                              onClick={() => handleNavigationClick('products')}
-                              className="text-left p-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-secondary transition-colors rounded-md"
-                            >
-                              Re-education
-                            </button>
-                            <button
-                              onClick={() => handleNavigationClick('products')}
-                              className="text-left p-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-secondary transition-colors rounded-md"
-                            >
-                              Medical consumables
-                            </button>
-                          </div>
-                        )}
-                        {item.key !== 'about' && item.key !== 'products' && (
-                          <div className="py-2">
-                            <button
-                              onClick={() => handleNavigationClick(item.key)}
-                              className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-secondary transition-colors"
-                            >
-                              {item.name} Overview
-                            </button>
-                          </div>
-                        )}
-                      </div>
-                    </div>
+          {/* Navigation Items */}
+          <div className="nav-items-container">
+            {navigationItems.map((item) => (
+              <div key={item.key} className="relative">
+                <button
+                  onClick={() => item.hasDropdown ? handleDropdownToggle(item.key) : handleNavigationClick(item.key)}
+                  className={`nav-item-button ${
+                    currentPage === item.key
+                      ? 'text-secondary border-b-2 border-secondary'
+                      : 'text-gray-700 hover:text-secondary'
+                  }`}
+                >
+                  <span>{item.name}</span>
+                  {item.hasDropdown && (
+                    <ChevronDown className={`nav-chevron ${openDropdown === item.key ? 'rotate-180' : ''}`} />
                   )}
-                </div>
-              ))}
-            </div>
+                </button>
+                
+                {/* Dropdown Menu */}
+                {item.hasDropdown && openDropdown === item.key && (
+                  <div className={`dropdown-menu ${
+                    item.key === 'about' ? 'dropdown-about' : item.key === 'products' ? 'dropdown-products' : 'dropdown-default'
+                  }`}>
+                    <div className="dropdown-content">
+                      {item.key === 'about' && (
+                        <div className="dropdown-grid-2">
+                          <button
+                            onClick={() => handleNavigationClick('about')}
+                            className="dropdown-item"
+                          >
+                            Who We Are
+                          </button>
+                          <button
+                            onClick={() => handleNavigationClick('sustainability')}
+                            className="dropdown-item"
+                          >
+                            Sustainability & CSR
+                          </button>
+                          <button
+                            onClick={() => handleNavigationClick('about')}
+                            className="dropdown-item"
+                          >
+                            Our Brands
+                          </button>
+                          <button
+                           onClick={() => handleNavigationClick('news-blogs')}
+                            className="dropdown-item"
+                          >
+                            News & Blogs
+                          </button>
+                        </div>
+                      )}
+                      {item.key === 'products' && (
+                        <div className="dropdown-grid-3">
+                          <button
+                            onClick={() => handleNavigationClick('products')}
+                            className="dropdown-item"
+                          >
+                            General Care
+                          </button>
+                          <button
+                            onClick={() => handleNavigationClick('products')}
+                            className="dropdown-item"
+                          >
+                            Ophthalmology
+                          </button>
+                          <button
+                            onClick={() => handleNavigationClick('products')}
+                            className="dropdown-item"
+                          >
+                            Otolaryngology
+                          </button>
+                          <button
+                            onClick={() => handleNavigationClick('products')}
+                            className="dropdown-item"
+                          >
+                            Urology, gynecology-obstetrics
+                          </button>
+                          <button
+                            onClick={() => handleNavigationClick('products')}
+                            className="dropdown-item"
+                          >
+                            Laboratory
+                          </button>
+                          <button
+                            onClick={() => handleNavigationClick('products')}
+                            className="dropdown-item"
+                          >
+                            Dental
+                          </button>
+                          <button
+                            onClick={() => handleNavigationClick('products')}
+                            className="dropdown-item"
+                          >
+                            Gastroenterology
+                          </button>
+                          <button
+                            onClick={() => handleNavigationClick('products')}
+                            className="dropdown-item"
+                          >
+                            Furniture and Logistics
+                          </button>
+                          <button
+                            onClick={() => handleNavigationClick('products')}
+                            className="dropdown-item"
+                          >
+                            Comfort and Wellbeing
+                          </button>
+                          <button
+                            onClick={() => handleNavigationClick('products')}
+                            className="dropdown-item"
+                          >
+                            Podology, dermatology
+                          </button>
+                          <button
+                            onClick={() => handleNavigationClick('products')}
+                            className="dropdown-item"
+                          >
+                            Re-education
+                          </button>
+                          <button
+                            onClick={() => handleNavigationClick('products')}
+                            className="dropdown-item"
+                          >
+                            Medical consumables
+                          </button>
+                        </div>
+                      )}
+                      {item.key !== 'about' && item.key !== 'products' && (
+                        <div className="py-2">
+                          <button
+                            onClick={() => handleNavigationClick(item.key)}
+                            className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-secondary transition-colors"
+                          >
+                            {item.name} Overview
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
 
-            {/* Action Buttons */}
-            <div className="flex items-center space-x-4">
-              <button
-                onClick={onLanguageToggle}
-                className="px-3 py-1 text-sm font-medium text-gray-700 border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
-              >
-                {language}
-              </button>
-              <button
-                onClick={onSendInquiry}
-                className="px-6 py-2 bg-secondary text-primary text-sm font-medium rounded-md hover:bg-blue-700 transition-colors"
-              >
-                Send Inquiry
-              </button>
+          {/* Action Buttons */}
+          <div className="action-buttons-container">
+            <button
+              onClick={onSendInquiry}
+              className="send-inquiry-button"
+            >
+              Send Inquiry
+            </button>
+            
+            <div className="language-container">
+              <div className="language-button-container">
+                <span className="language-text">{language}</span>
+                <div className="language-overlay" onClick={onLanguageToggle}>
+                  <img 
+                    src="/src/assets/navbar_icons/A-chinese-symbol-logo-desktop-version.svg" 
+                    alt="Language" 
+                    className="language-icon"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </nav>
 
       {/* Mobile Navigation */}
-      <nav className="bg-primary border-b border-gray-100 sticky top-0 z-50 shadow-sm md:hidden">
-        <div className="max-w-7xl mx-auto px-4">
-          {/* Primary Mobile Navigation Bar */}
-          <div className="flex justify-between items-center h-16">
-            {/* Logo */}
+      <nav className="navbar-mobile bg-primary border-b border-gray-100 sticky top-0 z-50 shadow-sm md:hidden">
+        <div className="mobile-navbar-container">
+          {/* Logo */}
+          <div className="mobile-logo-container">
             <button
               onClick={() => handleNavigationClick('home')}
-              className="flex items-center space-x-2 text-secondary hover:opacity-80 transition-opacity"
+              className="mobile-logo-button"
             >
-              <Building2 className="h-8 w-8" />
-              <span className="text-xl font-bold">ProCareGroup</span>
-            </button>
-
-            {/* Send Inquiry Button */}
-            <button
-              onClick={onSendInquiry}
-              className="px-4 py-2 bg-secondary text-primary text-sm font-medium rounded-md hover:bg-blue-700 transition-colors"
-            >
-              Send Inquiry
-            </button>
-
-            {/* Hamburger Menu */}
-            <button
-              onClick={toggleMobileMenu}
-              className="p-2 text-gray-700 hover:text-secondary transition-colors"
-            >
-              <Menu className="h-6 w-6" />
+              <img 
+                src="/src/assets/Procare-logo.svg" 
+                alt="ProCareGroup" 
+                className="mobile-logo-image"
+              />
             </button>
           </div>
+
+          {/* Send Inquiry Button */}
+          <button
+            onClick={onSendInquiry}
+            className="mobile-send-inquiry-button"
+          >
+            Send Inquiry
+          </button>
+
+          {/* Hamburger Menu */}
+          <button
+            onClick={toggleMobileMenu}
+            className="mobile-hamburger-button"
+          >
+            <img 
+              src="/src/assets/navbar_icons/hamburger-menu-moblie-version.svg" 
+              alt="Menu" 
+              className="mobile-hamburger-icon"
+            />
+          </button>
         </div>
 
         {/* Secondary Mobile Navigation */}
@@ -404,6 +418,360 @@ const Navbar: React.FC<NavbarProps> = ({
           </div>
         )}
       </nav>
+
+      <style jsx>{`
+        /* CSS Custom Properties */
+        :root {
+          --navbar-bg: #00000047;
+          --navbar-height-mobile: 9vh;
+          --navbar-height-desktop: 6rem;
+          --logo-width-mobile: 19.5vw;
+          --logo-height-mobile: 3vh;
+          --logo-width-desktop: 13rem;
+          --logo-height-desktop: 2rem;
+          --button-width: 9.5rem;
+          --button-height: 3rem;
+          --hamburger-size: 2rem;
+          --language-container-width: 5.9375rem;
+          --language-container-height: 2.5rem;
+          --language-overlay-size: 2.5rem;
+          --border-radius-small: 0.3125rem;
+        }
+
+        /* Desktop Navbar */
+        .navbar-desktop {
+          background: var(--navbar-bg);
+          height: var(--navbar-height-desktop);
+        }
+
+        .navbar-container {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+        }
+
+        .logo-container {
+          position: absolute;
+          top: 1.9375rem;
+          left: 4rem;
+          width: var(--logo-width-desktop);
+          height: var(--logo-height-desktop);
+        }
+
+        .logo-button {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          background: transparent;
+          border: none;
+          cursor: pointer;
+          transition: opacity 0.2s ease;
+        }
+
+        .logo-button:hover {
+          opacity: 0.8;
+        }
+
+        .logo-image {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+
+        .nav-items-container {
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+          display: flex;
+          align-items: center;
+          gap: 2rem;
+          height: 100%;
+        }
+
+        .nav-item-button {
+          display: flex;
+          align-items: center;
+          gap: 0.25rem;
+          padding: 0.75rem 0.5rem;
+          font-size: 0.875rem;
+          font-weight: 500;
+          transition: color 0.2s ease;
+          background: transparent;
+          border: none;
+          cursor: pointer;
+          white-space: nowrap;
+        }
+
+        .nav-chevron {
+          width: 1rem;
+          height: 1rem;
+          transition: transform 0.2s ease;
+        }
+
+        .action-buttons-container {
+          position: absolute;
+          right: 4rem;
+          top: 50%;
+          transform: translateY(-50%);
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+        }
+
+        .send-inquiry-button {
+          width: var(--button-width);
+          height: var(--button-height);
+          background: #0000FF;
+          color: white;
+          border: none;
+          border-radius: var(--border-radius-small);
+          font-size: 0.875rem;
+          font-weight: 600;
+          cursor: pointer;
+          transition: background-color 0.2s ease;
+        }
+
+        .send-inquiry-button:hover {
+          background: #0000CC;
+        }
+
+        .language-container {
+          position: relative;
+        }
+
+        .language-button-container {
+          position: relative;
+          width: var(--language-container-width);
+          height: var(--language-container-height);
+          display: flex;
+          align-items: center;
+          background: transparent;
+          border-radius: var(--border-radius-small);
+          overflow: hidden;
+        }
+
+        .language-text {
+          position: absolute;
+          left: 1.125rem;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 1.375rem;
+          height: 1.25rem;
+          font-family: 'Instrument Sans', sans-serif;
+          font-weight: 600;
+          font-size: 1rem;
+          color: #FFFFFF;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .language-overlay {
+          position: absolute;
+          right: 0;
+          top: 0;
+          width: var(--language-overlay-size);
+          height: var(--language-overlay-size);
+          background: rgba(255, 255, 255, 0.1);
+          border-radius: 0 var(--border-radius-small) var(--border-radius-small) 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: background-color 0.2s ease;
+        }
+
+        .language-overlay:hover {
+          background: rgba(255, 255, 255, 0.2);
+        }
+
+        .language-icon {
+          width: 1.5rem;
+          height: 1.5rem;
+          object-fit: contain;
+        }
+
+        /* Mobile Navbar */
+        .navbar-mobile {
+          background: var(--navbar-bg);
+          height: var(--navbar-height-mobile);
+        }
+
+        .mobile-navbar-container {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+        }
+
+        .mobile-logo-container {
+          position: absolute;
+          top: 3vh;
+          left: 4vw;
+          width: var(--logo-width-mobile);
+          height: var(--logo-height-mobile);
+        }
+
+        .mobile-logo-button {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          background: transparent;
+          border: none;
+          cursor: pointer;
+          transition: opacity 0.2s ease;
+        }
+
+        .mobile-logo-button:hover {
+          opacity: 0.8;
+        }
+
+        .mobile-logo-image {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+
+        .mobile-send-inquiry-button {
+          position: absolute;
+          top: 1.5vh;
+          right: 12vw;
+          width: var(--button-width);
+          height: var(--button-height);
+          background: #0000FF;
+          color: white;
+          border: none;
+          border-radius: var(--border-radius-small);
+          font-size: 0.875rem;
+          font-weight: 600;
+          cursor: pointer;
+          transition: background-color 0.2s ease;
+        }
+
+        .mobile-send-inquiry-button:hover {
+          background: #0000CC;
+        }
+
+        .mobile-hamburger-button {
+          position: absolute;
+          top: 2.5vh;
+          right: 4vw;
+          width: var(--hamburger-size);
+          height: var(--hamburger-size);
+          background: transparent;
+          border: none;
+          cursor: pointer;
+          transition: opacity 0.2s ease;
+        }
+
+        .mobile-hamburger-button:hover {
+          opacity: 0.8;
+        }
+
+        .mobile-hamburger-icon {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+
+        /* Dropdown Styles */
+        .dropdown-menu {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          margin-top: 0.5rem;
+          background: white;
+          border: 1px solid #e5e7eb;
+          border-radius: 0.375rem;
+          box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+          z-index: 50;
+        }
+
+        .dropdown-about {
+          width: 24rem;
+        }
+
+        .dropdown-products {
+          width: 37.5rem;
+        }
+
+        .dropdown-default {
+          width: 12rem;
+        }
+
+        .dropdown-content {
+          padding: 1rem;
+        }
+
+        .dropdown-grid-2 {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 1rem;
+        }
+
+        .dropdown-grid-3 {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 1rem;
+        }
+
+        .dropdown-item {
+          text-align: left;
+          padding: 0.75rem;
+          font-size: 0.875rem;
+          color: #374151;
+          background: transparent;
+          border: none;
+          border-radius: 0.375rem;
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+
+        .dropdown-item:hover {
+          background: #f9fafb;
+          color: #0000FF;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+          .mobile-logo-container {
+            width: 20vw;
+            height: 3.5vh;
+          }
+          
+          .mobile-send-inquiry-button {
+            width: 18vw;
+            height: 2.5rem;
+            font-size: 0.75rem;
+            right: 14vw;
+          }
+          
+          .mobile-hamburger-button {
+            right: 6vw;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .mobile-logo-container {
+            width: 25vw;
+            height: 4vh;
+          }
+          
+          .mobile-send-inquiry-button {
+            width: 20vw;
+            height: 2.2rem;
+            font-size: 0.7rem;
+            right: 16vw;
+          }
+        }
+      `}</style>
     </>
   );
 };
