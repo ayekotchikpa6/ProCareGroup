@@ -57,22 +57,25 @@ const Navbar: React.FC<NavbarProps> = ({
   return (
     <>
       {/* Desktop Navigation */}
-      <nav className="bg-primary border-b border-gray-100 sticky top-0 z-50 shadow-sm hidden md:block">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
+      <nav className="bg-[#00000047] sticky top-0 z-50 hidden md:block">
+        <div className="w-full px-16">
+          <div className="flex items-center h-auto py-8">
             {/* Logo */}
             <div className="flex items-center">
               <button
                 onClick={() => handleNavigationClick('home')}
-                className="flex items-center space-x-2 text-secondary hover:opacity-80 transition-opacity"
+                className="flex items-center hover:opacity-80 transition-opacity"
               >
-                <Building2 className="h-8 w-8" />
-                <span className="text-xl font-bold">ProCareGroup</span>
+                <img 
+                  src="/src/assets/Procare-logo.svg" 
+                  alt="ProCareGroup Logo"
+                  className="h-auto w-auto"
+                />
               </button>
             </div>
 
             {/* Navigation Items */}
-            <div className="flex items-center space-x-8">
+            <div className="flex items-center space-x-8 ml-16">
               {navigationItems.map((item) => (
                 <div key={item.key} className="relative">
                   <button
@@ -80,7 +83,7 @@ const Navbar: React.FC<NavbarProps> = ({
                     className={`flex items-center space-x-1 px-3 py-2 text-sm font-medium transition-colors duration-200 ${
                       currentPage === item.key
                         ? 'text-secondary border-b-2 border-secondary'
-                        : 'text-gray-700 hover:text-secondary'
+                        : 'text-white hover:text-secondary'
                     }`}
                   >
                     <span>{item.name}</span>
@@ -216,14 +219,8 @@ const Navbar: React.FC<NavbarProps> = ({
               ))}
             </div>
 
-            {/* Action Buttons */}
-            <div className="flex items-center space-x-4">
-              <button
-                onClick={onLanguageToggle}
-                className="px-3 py-1 text-sm font-medium text-gray-700 border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
-              >
-                {language}
-              </button>
+            {/* Send Inquiry Button */}
+            <div className="ml-auto mr-4">
               <button
                 onClick={onSendInquiry}
                 className="px-6 py-2 bg-secondary text-primary text-sm font-medium rounded-md hover:bg-blue-700 transition-colors"
@@ -231,38 +228,77 @@ const Navbar: React.FC<NavbarProps> = ({
                 Send Inquiry
               </button>
             </div>
+
+            {/* Language Selector */}
+            <div className="flex items-center w-24 h-10 relative">
+              <button
+                onClick={onLanguageToggle}
+                className="flex items-center w-full h-full relative overflow-hidden rounded-r-md"
+              >
+                {/* Semi-transparent white overlay */}
+                <div className="absolute inset-0 bg-white opacity-10 rounded-r-md"></div>
+                
+                {/* EN Text */}
+                <span className="relative z-10 text-white font-bold text-base px-3" style={{ fontFamily: 'Instrument Sans, sans-serif' }}>
+                  EN
+                </span>
+                
+                {/* Icon Container */}
+                <div className="relative z-10 w-6 h-6 flex items-center justify-center ml-auto mr-2">
+                  <img 
+                    src="/src/assets/navbar_icons/A-chinese-symbol-logo-desktop-version.svg" 
+                    alt="Language Icon 1"
+                    className="absolute w-full h-full"
+                  />
+                  <img 
+                    src="/src/assets/navbar_icons/A-chinese-symbol-logo-2-desktop-version.svg" 
+                    alt="Language Icon 2"
+                    className="absolute w-full h-full"
+                  />
+                </div>
+              </button>
+            </div>
           </div>
         </div>
       </nav>
 
       {/* Mobile Navigation */}
-      <nav className="bg-primary border-b border-gray-100 sticky top-0 z-50 shadow-sm md:hidden">
-        <div className="max-w-7xl mx-auto px-4">
+      <nav className="bg-[#00000047] sticky top-0 z-50 md:hidden">
+        <div className="w-full">
           {/* Primary Mobile Navigation Bar */}
-          <div className="flex justify-between items-center h-16">
+          <div className="flex items-center h-auto py-6 px-8">
             {/* Logo */}
             <button
               onClick={() => handleNavigationClick('home')}
-              className="flex items-center space-x-2 text-secondary hover:opacity-80 transition-opacity"
+              className="flex items-center hover:opacity-80 transition-opacity"
             >
-              <Building2 className="h-8 w-8" />
-              <span className="text-xl font-bold">ProCareGroup</span>
+              <img 
+                src="/src/assets/Procare-logo.svg" 
+                alt="ProCareGroup Logo"
+                className="h-auto w-auto"
+              />
             </button>
 
             {/* Send Inquiry Button */}
-            <button
-              onClick={onSendInquiry}
-              className="px-4 py-2 bg-secondary text-primary text-sm font-medium rounded-md hover:bg-blue-700 transition-colors"
-            >
-              Send Inquiry
-            </button>
+            <div className="ml-auto mr-2">
+              <button
+                onClick={onSendInquiry}
+                className="px-4 py-2 bg-secondary text-primary text-sm font-medium rounded-md hover:bg-blue-700 transition-colors"
+              >
+                Send Inquiry
+              </button>
+            </div>
 
             {/* Hamburger Menu */}
             <button
               onClick={toggleMobileMenu}
-              className="p-2 text-gray-700 hover:text-secondary transition-colors"
+              className="w-8 h-8 flex items-center justify-center"
             >
-              <Menu className="h-6 w-6" />
+              <img 
+                src="/src/assets/navbar_icons/hamburger-menu-moblie-version.svg" 
+                alt="Menu"
+                className="w-full h-full"
+              />
             </button>
           </div>
         </div>
