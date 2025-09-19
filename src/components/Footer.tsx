@@ -38,20 +38,24 @@ const Footer: React.FC<FooterProps> = ({ footerLinks, onNavigate }) => {
 
   return (
     <footer className="bg-gray-900 text-primary">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Company Info */}
-          <div className="space-y-6">
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Company */}
+          <div className="flex flex-row space-y-6">
             <div className="flex items-center space-x-2">
               <Building2 className="h-8 w-8 text-secondary" />
               <span className="text-2xl font-bold">ProCareGroup</span>
             </div>
-            
-            <p className="text-gray-300 leading-relaxed">
+          </div>
+
+            {
+            /*<p className="text-gray-300 leading-relaxed">
               Leading provider of professional healthcare solutions, 
               committed to excellence in service and innovation.
-            </p>
-            
+            </p>*/
+            }
+
+          <div className='grid grid-cols-4'>  
             <div className="space-y-3">
               <div className="flex items-center space-x-3 text-gray-300">
                 <Phone className="h-5 w-5 text-secondary" />
