@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Mail } from 'lucide-react';
 
 interface NewsletterProps {
   onSubscribe: (email: string) => void;
@@ -38,62 +37,89 @@ const Newsletter: React.FC<NewsletterProps> = ({ onSubscribe }) => {
   };
 
   return (
-    <section className="bg-gray-50 py-16">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="flex justify-center mb-6">
-          <div className="p-3 bg-secondary rounded-full">
-            <Mail className="h-8 w-8 text-primary" />
+    <section style={{ backgroundColor: '#000080' }} className="py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col lg:flex-row items-center justify-between">
+          {/* Left Side - Text & Form */}
+          <div className="flex-1 text-center lg:text-left mb-8 lg:mb-0 lg:pr-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              Subscribe To Our Newsletter
+            </h2>
+            
+            <p className="text-lg text-white mb-8 max-w-lg">
+              Medical Equipment Consumables at The highest Quality Medical
+            </p>
+
+            <form onSubmit={handleSubmit} className="w-full max-w-md mx-auto lg:mx-0">
+              {/* Desktop: Horizontal Layout */}
+              <div className="hidden md:flex gap-4">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter Your Email Address"
+                  className="flex-1 px-4 py-3 bg-white text-gray-900 rounded-md focus:ring-2 focus:ring-blue-300 focus:outline-none"
+                  required
+                />
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  style={{ backgroundColor: '#0000FF' }}
+                  className={`px-8 py-3 text-white font-medium rounded-md transition-colors ${
+                    isSubmitting
+                      ? 'opacity-50 cursor-not-allowed'
+                      : 'hover:opacity-90'
+                  }`}
+                >
+                  {isSubmitting ? 'Subscribing...' : 'Subscribe'}
+                </button>
+              </div>
+
+              {/* Mobile: Vertical Layout */}
+              <div className="md:hidden space-y-4">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter Your Email Address"
+                  className="w-full px-4 py-3 bg-white text-gray-900 rounded-md focus:ring-2 focus:ring-blue-300 focus:outline-none"
+                  required
+                />
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  style={{ backgroundColor: '#0000FF' }}
+                  className={`w-full px-8 py-3 text-white font-medium rounded-md transition-colors ${
+                    isSubmitting
+                      ? 'opacity-50 cursor-not-allowed'
+                      : 'hover:opacity-90'
+                  }`}
+                >
+                  {isSubmitting ? 'Subscribing...' : 'Subscribe'}
+                </button>
+              </div>
+              
+              {message && (
+                <div className={`mt-4 p-3 rounded-md text-sm ${
+                  message.includes('Thank you')
+                    ? 'bg-green-100 text-green-800'
+                    : 'bg-red-100 text-red-800'
+                }`}>
+                  {message}
+                </div>
+              )}
+            </form>
+          </div>
+
+          {/* Right Side - Graphic (Desktop Only) */}
+          <div className="hidden lg:block flex-shrink-0">
+            <img
+              src="/src/assets/newsletter-airplane-desktop-version.svg"
+              alt="Newsletter graphic"
+              className="w-64 h-auto"
+            />
           </div>
         </div>
-        
-        <h2 className="text-3xl font-bold text-gray-900 mb-4">
-          Subscribe to our Newsletter
-        </h2>
-        
-        <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-          Stay updated with our latest news, updates, and exclusive offers. 
-          Get valuable insights delivered directly to your inbox.
-        </p>
-
-        <form onSubmit={handleSubmit} className="max-w-md mx-auto">
-          <div className="flex flex-col sm:flex-row gap-4">
-            <div className="flex-1">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email address"
-                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-colors"
-                required
-              />
-            </div>
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className={`px-8 py-3 bg-secondary text-primary font-medium rounded-md transition-colors ${
-                isSubmitting
-                  ? 'opacity-50 cursor-not-allowed'
-                  : 'hover:bg-blue-700 focus:ring-2 focus:ring-secondary focus:ring-offset-2'
-              }`}
-            >
-              {isSubmitting ? 'Subscribing...' : 'Subscribe'}
-            </button>
-          </div>
-          
-          {message && (
-            <div className={`mt-4 p-3 rounded-md text-sm ${
-              message.includes('Thank you')
-                ? 'bg-green-100 text-green-800'
-                : 'bg-red-100 text-red-800'
-            }`}>
-              {message}
-            </div>
-          )}
-        </form>
-
-        <p className="text-sm text-gray-500 mt-6">
-          We respect your privacy. Unsubscribe at any time.
-        </p>
       </div>
     </section>
   );

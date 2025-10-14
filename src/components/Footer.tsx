@@ -1,5 +1,5 @@
 import React from 'react';
-import { Building2, Phone, Mail, MapPin } from 'lucide-react';
+import { Building2 } from 'lucide-react';
 
 interface FooterLink {
   name: string;
@@ -12,10 +12,8 @@ interface FooterProps {
 }
 
 const Footer: React.FC<FooterProps> = ({ footerLinks, onNavigate }) => {
-  const currentYear = new Date().getFullYear();
-
   const handleLinkClick = (key: string) => {
-    if (['home', 'products', 'services', 'contact'].includes(key)) {
+    if (['home', 'products', 'services', 'contact', 'careers', 'news-blogs', 'sustainability'].includes(key)) {
       onNavigate(key);
     } else {
       // Handle other links (inquiry, quote, appointment, etc.)
@@ -23,114 +21,249 @@ const Footer: React.FC<FooterProps> = ({ footerLinks, onNavigate }) => {
     }
   };
 
-  // Group links into columns for better organization
-  const navigationLinks = footerLinks.filter(link => 
-    ['home', 'products', 'services', 'contact'].includes(link.key)
-  );
-  
-  const serviceLinks = footerLinks.filter(link => 
-    ['inquiry', 'quote', 'appointment', 'faq'].includes(link.key)
-  );
-  
-  const legalLinks = footerLinks.filter(link => 
-    ['terms', 'privacy'].includes(link.key)
-  );
-
   return (
-    <footer className="bg-gray-900 text-primary">
+    <footer style={{ backgroundColor: '#000080' }} className="text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Company Info */}
-          <div className="space-y-6">
+        {/* Desktop Layout */}
+        <div className="hidden md:block">
+          <div className="flex items-start justify-between">
+            {/* Logo - Far Left */}
             <div className="flex items-center space-x-2">
-              <Building2 className="h-8 w-8 text-secondary" />
-              <span className="text-2xl font-bold">ProCareGroup</span>
+              <Building2 className="h-8 w-8 text-white" />
+              <span className="text-2xl font-bold text-white">ProCareGroup</span>
             </div>
-            
-            <p className="text-gray-300 leading-relaxed">
-              Leading provider of professional healthcare solutions, 
-              committed to excellence in service and innovation.
+
+            {/* Three Column Layout */}
+            <div className="flex space-x-16">
+              {/* Column 1 */}
+              <div className="space-y-3">
+                <button
+                  onClick={() => handleLinkClick('home')}
+                  className="block text-white hover:text-gray-300 transition-colors duration-200"
+                >
+                  Home
+                </button>
+                <button
+                  onClick={() => handleLinkClick('products')}
+                  className="block text-white hover:text-gray-300 transition-colors duration-200"
+                >
+                  Products
+                </button>
+                <button
+                  onClick={() => handleLinkClick('services')}
+                  className="block text-white hover:text-gray-300 transition-colors duration-200"
+                >
+                  Services
+                </button>
+              </div>
+
+              {/* Column 2 */}
+              <div className="space-y-3">
+                <button
+                  onClick={() => handleLinkClick('contact')}
+                  className="block text-white hover:text-gray-300 transition-colors duration-200"
+                >
+                  Contact
+                </button>
+                <button
+                  onClick={() => handleLinkClick('inquiry')}
+                  className="block text-white hover:text-gray-300 transition-colors duration-200"
+                >
+                  Send Inquiry
+                </button>
+                <button
+                  onClick={() => handleLinkClick('quote')}
+                  className="block text-white hover:text-gray-300 transition-colors duration-200"
+                >
+                  Request Quote
+                </button>
+              </div>
+
+              {/* Column 3 */}
+              <div className="space-y-3">
+                <button
+                  onClick={() => handleLinkClick('appointment')}
+                  className="block text-white hover:text-gray-300 transition-colors duration-200"
+                >
+                  Book Appointment
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Row - Legal & Copyright */}
+          <div className="flex items-center justify-between mt-12 pt-8 border-t border-blue-700">
+            <p className="text-white text-sm">
+              Procare Group All Rights Reserved © 2025
             </p>
-            
-            <div className="space-y-3">
-              <div className="flex items-center space-x-3 text-gray-300">
-                <Phone className="h-5 w-5 text-secondary" />
-                <span>+1 (555) 123-4567</span>
-              </div>
-              <div className="flex items-center space-x-3 text-gray-300">
-                <Mail className="h-5 w-5 text-secondary" />
-                <span>info@procaregroup.com</span>
-              </div>
-              <div className="flex items-center space-x-3 text-gray-300">
-                <MapPin className="h-5 w-5 text-secondary" />
-                <span>123 Healthcare Blvd, Medical District</span>
-              </div>
+            <div className="flex items-center space-x-6">
+              <button
+                onClick={() => handleLinkClick('faq')}
+                className="text-white hover:text-gray-300 transition-colors duration-200 text-sm"
+              >
+                FAQ
+              </button>
+              <button
+                onClick={() => handleLinkClick('terms')}
+                className="text-white hover:text-gray-300 transition-colors duration-200 text-sm"
+              >
+                Terms and Conditions
+              </button>
+              <button
+                onClick={() => handleLinkClick('privacy')}
+                className="text-white hover:text-gray-300 transition-colors duration-200 text-sm"
+              >
+                Privacy Policy
+              </button>
             </div>
-          </div>
-
-          {/* Navigation Links */}
-          <div>
-            <h3 className="text-lg font-semibold mb-6">Navigation</h3>
-            <ul className="space-y-3">
-              {navigationLinks.map((link) => (
-                <li key={link.key}>
-                  <button
-                    onClick={() => handleLinkClick(link.key)}
-                    className="text-gray-300 hover:text-secondary transition-colors duration-200 text-left"
-                  >
-                    {link.name}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Services */}
-          <div>
-            <h3 className="text-lg font-semibold mb-6">Services</h3>
-            <ul className="space-y-3">
-              {serviceLinks.map((link) => (
-                <li key={link.key}>
-                  <button
-                    onClick={() => handleLinkClick(link.key)}
-                    className="text-gray-300 hover:text-secondary transition-colors duration-200 text-left"
-                  >
-                    {link.name}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Legal */}
-          <div>
-            <h3 className="text-lg font-semibold mb-6">Legal</h3>
-            <ul className="space-y-3">
-              {legalLinks.map((link) => (
-                <li key={link.key}>
-                  <button
-                    onClick={() => handleLinkClick(link.key)}
-                    className="text-gray-300 hover:text-secondary transition-colors duration-200 text-left"
-                  >
-                    {link.name}
-                  </button>
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
 
-        {/* Bottom Border */}
-        <div className="border-t border-gray-700 mt-12 pt-8">
-          <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
-            <p className="text-gray-400 text-sm">
-              © {currentYear} ProCareGroup. All rights reserved.
-            </p>
-            <div className="flex items-center space-x-6">
-              <p className="text-gray-400 text-sm">
-                Professional Healthcare Solutions
-              </p>
+        {/* Mobile Layout */}
+        <div className="md:hidden">
+          {/* Centered Logo */}
+          <div className="flex justify-center mb-8">
+            <div className="flex items-center space-x-2">
+              <Building2 className="h-8 w-8 text-white" />
+              <span className="text-2xl font-bold text-white">ProCareGroup</span>
             </div>
+          </div>
+
+          {/* Four Column Grid - Left Aligned */}
+          <div className="grid grid-cols-2 gap-x-8 gap-y-4 mb-8">
+            {/* Column 1 */}
+            <div className="space-y-3">
+              <button
+                onClick={() => handleLinkClick('home')}
+                className="block text-white hover:text-gray-300 transition-colors duration-200 text-left text-sm"
+              >
+                Home
+              </button>
+              <button
+                onClick={() => handleLinkClick('products')}
+                className="block text-white hover:text-gray-300 transition-colors duration-200 text-left text-sm"
+              >
+                Products
+              </button>
+              <button
+                onClick={() => handleLinkClick('news-blogs')}
+                className="block text-white hover:text-gray-300 transition-colors duration-200 text-left text-sm"
+              >
+                Blogs
+              </button>
+              <button
+                onClick={() => handleLinkClick('products')}
+                className="block text-white hover:text-gray-300 transition-colors duration-200 text-left text-sm"
+              >
+                Pediatrics
+              </button>
+            </div>
+
+            {/* Column 2 */}
+            <div className="space-y-3">
+              <button
+                onClick={() => handleLinkClick('appointment')}
+                className="block text-white hover:text-gray-300 transition-colors duration-200 text-left text-sm"
+              >
+                Book Appointment
+              </button>
+              <button
+                onClick={() => handleLinkClick('services')}
+                className="block text-white hover:text-gray-300 transition-colors duration-200 text-left text-sm"
+              >
+                Services
+              </button>
+              <button
+                onClick={() => handleLinkClick('sustainability')}
+                className="block text-white hover:text-gray-300 transition-colors duration-200 text-left text-sm"
+              >
+                Sustainability & CSR
+              </button>
+              <button
+                onClick={() => handleLinkClick('news-blogs')}
+                className="block text-white hover:text-gray-300 transition-colors duration-200 text-left text-sm"
+              >
+                News
+              </button>
+            </div>
+
+            {/* Column 3 */}
+            <div className="space-y-3">
+              <button
+                onClick={() => handleLinkClick('contact')}
+                className="block text-white hover:text-gray-300 transition-colors duration-200 text-left text-sm"
+              >
+                Contact
+              </button>
+              <button
+                onClick={() => handleLinkClick('inquiry')}
+                className="block text-white hover:text-gray-300 transition-colors duration-200 text-left text-sm"
+              >
+                Send Inquiry
+              </button>
+              <button
+                onClick={() => handleLinkClick('products')}
+                className="block text-white hover:text-gray-300 transition-colors duration-200 text-left text-sm"
+              >
+                General Medicine
+              </button>
+              <button
+                onClick={() => handleLinkClick('news-blogs')}
+                className="block text-white hover:text-gray-300 transition-colors duration-200 text-left text-sm"
+              >
+                Articles
+              </button>
+            </div>
+
+            {/* Column 4 */}
+            <div className="space-y-3">
+              <button
+                onClick={() => handleLinkClick('quote')}
+                className="block text-white hover:text-gray-300 transition-colors duration-200 text-left text-sm"
+              >
+                Request Quote
+              </button>
+              <button
+                onClick={() => handleLinkClick('careers')}
+                className="block text-white hover:text-gray-300 transition-colors duration-200 text-left text-sm"
+              >
+                Careers
+              </button>
+              <button
+                onClick={() => handleLinkClick('products')}
+                className="block text-white hover:text-gray-300 transition-colors duration-200 text-left text-sm"
+              >
+                Emergency Medicine
+              </button>
+              <button
+                onClick={() => handleLinkClick('about')}
+                className="block text-white hover:text-gray-300 transition-colors duration-200 text-left text-sm"
+              >
+                Our Brands
+              </button>
+            </div>
+          </div>
+
+          {/* Bottom Row - Legal & Copyright (Left Aligned) */}
+          <div className="pt-8 border-t border-blue-700 space-y-2">
+            <div className="text-left">
+              <button
+                onClick={() => handleLinkClick('terms')}
+                className="text-white hover:text-gray-300 transition-colors duration-200 text-sm"
+              >
+                Terms and Conditions
+              </button>
+              <span className="text-white text-sm mx-2">•</span>
+              <button
+                onClick={() => handleLinkClick('privacy')}
+                className="text-white hover:text-gray-300 transition-colors duration-200 text-sm"
+              >
+                Privacy Policy
+              </button>
+            </div>
+            <p className="text-white text-sm text-left">
+              Procare group © 2025
+            </p>
           </div>
         </div>
       </div>
