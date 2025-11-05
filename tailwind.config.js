@@ -16,7 +16,10 @@ export default {
         '22': '5.5rem',
         '26': '6.5rem',
         '30': '7.5rem',
-      }
+      },
+      maxWidth: {
+        '8xl': '90rem', // 1440px
+      },
     },
   },
   plugins: [],
